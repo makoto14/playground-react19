@@ -1,5 +1,5 @@
 /** @jsxImportSource restyle */
-import { FC } from "react";
+import { FC, useState } from "react";
 import { css, styled } from "restyle";
 
 export const Head: FC = () => {
@@ -7,10 +7,13 @@ export const Head: FC = () => {
     color: "red",
   });
 
+  const [gap, setGap] = useState<number>(0);
+
   return (
     <div>
       <h2 className={className}>Head</h2>
-      <title>react 19</title>
+      <title>Playground react 19</title>
+
       <div
         css={{
           color: "hotpink",
@@ -19,7 +22,20 @@ export const Head: FC = () => {
         hoge
       </div>
       {styles}
-      <Button>restyle button</Button>
+      <Button onClick={() => setGap((v) => v + 1)}>restyle button</Button>
+
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "column",
+          color: "hotpink",
+          gap: `${gap}px`,
+        }}
+      >
+        {Array.from({ length: 10 }).map((_v, i) => (
+          <div key={i}>{i}</div>
+        ))}
+      </div>
     </div>
   );
 };
